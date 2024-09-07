@@ -1,18 +1,17 @@
 import { nanoid } from "nanoid";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
-export const AddTaskForm = ({ todos, setTodos }) => {
+export const AddTaskForm = ({ setTodos }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputText = (event) => {
     setInputValue(event.target.value);
-    console.log(inputValue);
   };
 
   const handleAddTaskForm = (event) => {
     event.preventDefault();
     const newTask = inputValue;
-    console.log(newTask);
     setTodos((prevState) => [
       { id: nanoid(), text: newTask, isDone: false },
       ...prevState,
@@ -27,4 +26,8 @@ export const AddTaskForm = ({ todos, setTodos }) => {
       </form>
     </>
   );
+};
+
+AddTaskForm.propTypes = {
+  setTodos: PropTypes.array.isRequired,
 };

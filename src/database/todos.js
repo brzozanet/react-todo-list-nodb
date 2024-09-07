@@ -3,22 +3,22 @@ import { nanoid } from "nanoid";
 export const todosDatabase = [
   {
     id: nanoid(),
-    text: "Skończyć kurs React",
+    task: "Skończyć kurs React",
     isDone: false,
   },
   {
     id: nanoid(),
-    text: "Dopieścić projekt Kapu$ta",
+    task: "Dopieścić projekt Kapu$ta",
     isDone: false,
   },
   {
     id: nanoid(),
-    text: "Zaktualizować CV",
+    task: "Zaktualizować CV",
     isDone: false,
   },
   {
     id: nanoid(),
-    text: "Zrobić nowe portfolio website",
+    task: "Zrobić nowe portfolio website",
     isDone: false,
   },
 ];

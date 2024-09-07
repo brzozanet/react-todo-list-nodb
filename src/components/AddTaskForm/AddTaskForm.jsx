@@ -13,7 +13,7 @@ export const AddTaskForm = ({ setTodos, setNumberOfTodos }) => {
     event.preventDefault();
     const newTask = inputValue;
     setTodos((prevState) => [
-      { id: nanoid(), text: newTask, isDone: false },
+      { id: nanoid(), task: newTask, isDone: false },
       ...prevState,
     ]);
     setNumberOfTodos((prevState) => prevState + 1);
@@ -25,7 +25,7 @@ export const AddTaskForm = ({ setTodos, setNumberOfTodos }) => {
       <form onSubmit={handleAddTaskForm}>
         <input
           type="text"
-          name="text"
+          name="task"
           value={inputValue}
           onChange={handleInputText}
         />

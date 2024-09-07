@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 
-export const TodoItem = ({ text }) => {
+export const TodoItem = ({ task }) => {
   return (
     <>
       <hr />
-      <p>{text}</p>
+      <p>{task}</p>
       <button>Zrobione</button>
       <button>Usuń</button>
     </>
@@ -12,5 +12,5 @@ export const TodoItem = ({ text }) => {
 };
 
 TodoItem.propTypes = {
-  text: PropTypes.string.isRequired,
+  task: PropTypes.string.isRequired,
 };

@@ -6,7 +6,7 @@ export const TodoList = ({ todos }) => {
   console.log(todos);
 
   const todoListElement = todos.map((todo) => (
-    <TodoItem text={todo.text} key={nanoid()} />
+    <TodoItem task={todo.task} key={nanoid()} />
   ));
 
   return (

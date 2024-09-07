@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const AddForm = () => {
+export const AddTaskForm = () => {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputText = (event) => {
@@ -8,13 +8,15 @@ export const AddForm = () => {
     console.log(inputValue);
   };
 
-  const handleAddForm = (event) => {
+  const handleAddTaskForm = (event) => {
     event.preventDefault();
+    const newTask = inputValue;
+    console.log(newTask);
   };
 
   return (
     <>
-      <form onSubmit={handleAddForm}>
+      <form onSubmit={handleAddTaskForm}>
         <input type="text" name="text" onChange={handleInputText} />
         <button type="submit">Dodaj</button>
       </form>

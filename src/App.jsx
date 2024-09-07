@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AddForm } from "./components/AddForm/AddForm";
+import { AddTaskForm } from "./components/AddTaskForm/AddTaskForm";
 import { TodoList } from "./components/TodoList/TodoList";
 import { todosDatabase } from "./database/todos";
 
@@ -16,7 +16,7 @@ function App() {
       <h1>Do zrobienia</h1>
       <h2>{todosDatabase.length} zadania</h2>
       {isFormVisible ? (
-        <AddForm />
+        <AddTaskForm />
       ) : (
         <button onClick={handleIsFormVisibleClick}>Dodaj zadanie</button>
       )}

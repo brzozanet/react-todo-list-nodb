@@ -11,8 +11,6 @@ function App() {
     setIsFormVisible((prevState) => !prevState);
   };
 
-  console.log(isFormVisible);
-
   return (
     <>
       <h1>Do zrobienia</h1>

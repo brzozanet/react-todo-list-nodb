@@ -12,10 +12,24 @@ function App() {
     setIsFormVisible((prevState) => !prevState);
   };
 
+  let numberOfTodosText;
+
+  if (numberOfTodos === 0) {
+    numberOfTodosText = "zadań";
+  } else if (numberOfTodos === 1) {
+    numberOfTodosText = "zadanie";
+  } else if (numberOfTodos < 5) {
+    numberOfTodosText = "zadania";
+  } else {
+    numberOfTodosText = "zadań";
+  }
+
   return (
     <>
       <h1>Do zrobienia</h1>
-      <h2>{numberOfTodos} zadania</h2>
+      <h2>
+        {numberOfTodos} {numberOfTodosText}
+      </h2>
       {isFormVisible ? (
         <AddTaskForm setTodos={setTodos} setNumberOfTodos={setNumberOfTodos} />
       ) : (

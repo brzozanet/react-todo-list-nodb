@@ -16,7 +16,7 @@ function App() {
       <h1>Do zrobienia</h1>
       <h2>{todosDatabase.length} zadania</h2>
       {isFormVisible ? (
-        <AddTaskForm />
+        <AddTaskForm todos={todos} setTodos={setTodos} />
       ) : (
         <button onClick={handleIsFormVisibleClick}>Dodaj zadanie</button>
       )}

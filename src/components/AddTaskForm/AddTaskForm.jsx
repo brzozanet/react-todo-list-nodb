@@ -1,6 +1,7 @@
+import { nanoid } from "nanoid";
 import { useState } from "react";
 
-export const AddTaskForm = () => {
+export const AddTaskForm = ({ todos, setTodos }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputText = (event) => {
@@ -12,6 +13,10 @@ export const AddTaskForm = () => {
     event.preventDefault();
     const newTask = inputValue;
     console.log(newTask);
+    setTodos((prevState) => [
+      { id: nanoid(), text: newTask, isDone: false },
+      ...prevState,
+    ]);
   };
 
   return (

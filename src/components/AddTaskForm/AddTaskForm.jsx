@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-export const AddTaskForm = ({ setTodos }) => {
+export const AddTaskForm = ({ setTodos, setNumberOfTodos }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputText = (event) => {
@@ -16,6 +16,7 @@ export const AddTaskForm = ({ setTodos }) => {
       { id: nanoid(), text: newTask, isDone: false },
       ...prevState,
     ]);
+    setNumberOfTodos((prevState) => prevState + 1);
     setInputValue("");
   };
 

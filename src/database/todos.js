@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 
-export const todos = [
+export const todosDatabase = [
   {
     id: nanoid(),
     text: "Skończyć kurs React",
@@ -9,11 +9,6 @@ export const todos = [
   {
     id: nanoid(),
     text: "Dopieścić projekt Kapu$ta",
-    isDone: false,
-  },
-  {
-    id: nanoid(),
-    text: "Zrobić projekt mentoringowy Next Photo Stock",
     isDone: false,
   },
   {

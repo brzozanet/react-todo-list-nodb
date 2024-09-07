@@ -1,8 +1,10 @@
 import { nanoid } from "nanoid";
-import { todos } from "../../database/todos";
 import { TodoItem } from "../TodoItem/TodoItem";
+import PropTypes from "prop-types";
 
-export const TodoList = () => {
+export const TodoList = ({ todos }) => {
+  console.log(todos);
+
   const todoListElement = todos.map((todo) => (
     <TodoItem text={todo.text} key={nanoid()} />
   ));
@@ -12,4 +14,8 @@ export const TodoList = () => {
       <div>{todoListElement}</div>
     </>
   );
+};
+
+TodoList.propTypes = {
+  todos: PropTypes.array.isRequired,
 };

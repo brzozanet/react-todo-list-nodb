@@ -1,14 +1,28 @@
-import { AddButton } from "./components/AddButton/AddButton";
+import { useState } from "react";
+import { AddForm } from "./components/AddForm/AddForm";
 import { TodoList } from "./components/TodoList/TodoList";
-import { todos } from "./database/todos";
+import { todosDatabase } from "./database/todos";
 
 function App() {
+  const [todos, setTodos] = useState(todosDatabase);
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
+  const handleIsFormVisibleClick = () => {
+    setIsFormVisible((prevState) => !prevState);
+  };
+
+  console.log(isFormVisible);
+
   return (
     <>
       <h1>Do zrobienia</h1>
-      <h2>{todos.length} zadania</h2>
-      <AddButton />
-      <TodoList />
+      <h2>{todosDatabase.length} zadania</h2>
+      {isFormVisible ? (
+        <AddForm />
+      ) : (
+        <button onClick={handleIsFormVisibleClick}>Dodaj zadanie</button>
+      )}
+      <TodoList todos={todos} />
     </>
   );
 }

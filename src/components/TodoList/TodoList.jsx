@@ -9,6 +9,7 @@ export const TodoList = ({ todos, setTodos, setNumberOfTodos }) => {
     <TodoItem
       id={todo.id}
       task={todo.task}
+      isDone={todo.isDone}
       todos={todos}
       setTodos={setTodos}
       setNumberOfTodos={setNumberOfTodos}

@@ -6,6 +6,7 @@ import { todosDatabase } from "./database/todos";
 function App() {
   const [todos, setTodos] = useState(todosDatabase);
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [numberOfTodos, setNumberOfTodos] = useState(todosDatabase.length);
 
   const handleIsFormVisibleClick = () => {
     setIsFormVisible((prevState) => !prevState);
@@ -14,7 +15,7 @@ function App() {
   return (
     <>
       <h1>Do zrobienia</h1>
-      <h2>{todosDatabase.length} zadania</h2>
+      <h2>{numberOfTodos} zadania</h2>
       {isFormVisible ? (
         <AddTaskForm setTodos={setTodos} />
       ) : (

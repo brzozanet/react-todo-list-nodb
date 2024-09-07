@@ -16,18 +16,26 @@ export const AddTaskForm = ({ setTodos }) => {
       { id: nanoid(), text: newTask, isDone: false },
       ...prevState,
     ]);
+    setInputValue("");
   };
 
   return (
     <>
       <form onSubmit={handleAddTaskForm}>
-        <input type="text" name="text" onChange={handleInputText} />
-        <button type="submit">Dodaj</button>
+        <input
+          type="text"
+          name="text"
+          value={inputValue}
+          onChange={handleInputText}
+        />
+        <button type="submit" disabled={inputValue ? false : true}>
+          Dodaj
+        </button>
       </form>
     </>
   );
 };
 
 AddTaskForm.propTypes = {
-  setTodos: PropTypes.array.isRequired,
+  setTodos: PropTypes.func.isRequired,
 };

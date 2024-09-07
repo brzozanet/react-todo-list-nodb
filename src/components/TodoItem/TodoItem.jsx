@@ -1,12 +1,10 @@
 import PropTypes from "prop-types";
 
-export const TodoItem = ({ id, task, todos, setTodos }) => {
+export const TodoItem = ({ id, task, todos, setTodos, setNumberOfTodos }) => {
   const handleTaskDeleteClick = () => {
-    console.log(id);
-    console.log(todos);
     const filteredTodos = todos.filter((todo) => todo.id != id);
-    console.log(filteredTodos);
     setTodos(filteredTodos);
+    setNumberOfTodos((prevState) => prevState - 1);
   };
 
   return (
@@ -24,4 +22,5 @@ TodoItem.propTypes = {
   task: PropTypes.string.isRequired,
   todos: PropTypes.array.isRequired,
   setTodos: PropTypes.func.isRequired,
+  setNumberOfTodos: PropTypes.func.isRequired,
 };

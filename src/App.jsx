@@ -34,7 +34,11 @@ function App() {
       ) : (
         <button onClick={handleIsFormVisibleClick}>Dodaj zadanie</button>
       )}
-      <TodoList todos={todos} setTodos={setTodos} />
+      <TodoList
+        todos={todos}
+        setTodos={setTodos}
+        setNumberOfTodos={setNumberOfTodos}
+      />
     </>
   );
 }

@@ -13,7 +13,6 @@ function App() {
   };
 
   let numberOfTodosText;
-
   if (numberOfTodos === 0) {
     numberOfTodosText = "zadań";
   } else if (numberOfTodos === 1) {

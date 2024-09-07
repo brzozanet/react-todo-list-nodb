@@ -34,7 +34,7 @@ function App() {
       ) : (
         <button onClick={handleIsFormVisibleClick}>Dodaj zadanie</button>
       )}
-      <TodoList todos={todos} />
+      <TodoList todos={todos} setTodos={setTodos} />
     </>
   );
 }

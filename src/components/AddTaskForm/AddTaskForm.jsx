@@ -39,4 +39,5 @@ export const AddTaskForm = ({ setTodos, setNumberOfTodos }) => {
 
 AddTaskForm.propTypes = {
   setTodos: PropTypes.func.isRequired,
+  setNumberOfTodos: PropTypes.func.isRequired,
 };

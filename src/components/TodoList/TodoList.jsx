@@ -3,6 +3,7 @@ import { TodoItem } from "../TodoItem/TodoItem";
 import PropTypes from "prop-types";
 
 export const TodoList = ({ todos, setTodos, setNumberOfTodos }) => {
+  console.log("todos:");
   console.log(todos);
 
   const todoListElement = todos.map((todo) => (

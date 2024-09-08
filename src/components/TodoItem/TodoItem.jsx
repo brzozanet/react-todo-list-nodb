@@ -9,17 +9,22 @@ export const TodoItem = ({
   setNumberOfTodos,
 }) => {
   const handleTaskDeleteClick = () => {
-    const filteredTodos = todos.filter((todo) => todo.id != id);
+    const filteredTodos = todos.filter((todo) => todo.id !== id);
     setTodos(filteredTodos);
     setNumberOfTodos((prevState) => prevState - 1);
   };
 
   const handleMarkAsDoneClick = () => {
-    console.log(isDone);
-    const filteredTodo = todos.filter((todo) => todo.id === id);
-    console.log(filteredTodo);
-    console.log(filteredTodo[0].isDone);
-    // NOTE: change isDone to true -> !filteredTodo[0].isDone
+    const updatedTodos = todos.filter((todo) => {
+      if (todo.id === id) {
+        todo.isDone = true;
+      }
+    });
+    // setTodos(updatedTodos);
+    console.log("updatedTodos:");
+    console.log(updatedTodos);
+    console.log("todos after done:");
+    console.log(todos);
   };
 
   return (

@@ -17,9 +17,10 @@ export const TodoItem = ({
   const handleMarkAsDoneClick = () => {
     const updatedTodos = todos.filter((todo) => {
       if (todo.id === id) {
-        todo.isDone = true;
+        return (todo.isDone = true);
       }
     });
+
     // setTodos(updatedTodos);
     console.log("updatedTodos:");
     console.log(updatedTodos);

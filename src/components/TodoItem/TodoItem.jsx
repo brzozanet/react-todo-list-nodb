@@ -1,11 +1,28 @@
+import Notiflix from "notiflix";
 import PropTypes from "prop-types";
 import css from "./TodoItem.module.css";
 
 export const TodoItem = ({ id, task, isDone, todos, setTodos }) => {
   const handleTaskDeleteClick = () => {
     const filteredTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(filteredTodos);
-    alert("Zadanie zostało usunięte");
+
+    Notiflix.Confirm.show(
+      "Konieczne potwierdzenie",
+      "Czy na pewno chcesz usunąć to zadanie?",
+      "Tak",
+      "Nie",
+      function yes() {
+        setTodos(filteredTodos);
+        Notiflix.Notify.success("Zadanie zostało usunięte");
+      },
+      function no() {
+        return;
+      },
+      {
+        width: "320px",
+        borderRadius: "8px",
+      }
+    );
   };
 
   const handleMarkAsDoneClick = () => {
@@ -16,8 +33,23 @@ export const TodoItem = ({ id, task, isDone, todos, setTodos }) => {
       return todo;
     });
 
-    setTodos(updatedTodos);
-    alert("Zadanie zostało oznaczone jako zrobione");
+    Notiflix.Confirm.show(
+      "Konieczne potwierdzenie",
+      "Czy na pewno oznaczyc to zadanie jako zrobione?",
+      "Tak",
+      "Nie",
+      function yes() {
+        setTodos(updatedTodos);
+        Notiflix.Notify.success("Zadanie zostało oznaczone jako zrobione");
+      },
+      function no() {
+        return;
+      },
+      {
+        width: "320px",
+        borderRadius: "8px",
+      }
+    );
   };
 
   return (

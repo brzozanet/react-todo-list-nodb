@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import { useState } from "react";
+import Notiflix from "notiflix";
 import PropTypes from "prop-types";
 
 export const AddTaskForm = ({ todos, setTodos }) => {
@@ -23,14 +24,14 @@ export const AddTaskForm = ({ todos, setTodos }) => {
     //   : "DODAJ NOWY TASK";
 
     if (existingTasks.includes(newTask)) {
-      alert("Takie zadanie masz już na liście");
+      Notiflix.Notify.failure("Takie zadanie masz już na liście");
     } else {
       setTodos((prevState) => [
         { id: nanoid(), task: newTask, isDone: false },
         ...prevState,
       ]);
       setInputValue("");
-      alert("Zadanie zostało dodane do listy");
+      Notiflix.Notify.success("Zadanie zostało dodane do listy");
     }
   };
 

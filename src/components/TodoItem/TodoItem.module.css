@@ -1,3 +1,8 @@
 .task {
   color: #fff;
 }
+
+.taskDone {
+  color: #fff;
+  text-decoration: line-through;
+}

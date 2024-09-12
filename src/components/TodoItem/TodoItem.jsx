@@ -19,7 +19,7 @@ export const TodoItem = ({ id, task, isDone, todos, setTodos }) => {
         return;
       },
       {
-        width: "320px",
+        width: "400px",
         borderRadius: "8px",
       }
     );
@@ -35,7 +35,7 @@ export const TodoItem = ({ id, task, isDone, todos, setTodos }) => {
 
     Notiflix.Confirm.show(
       "Konieczne potwierdzenie",
-      "Czy na pewno oznaczyc to zadanie jako zrobione?",
+      "Czy na pewno oznaczyć to zadanie jako zrobione?",
       "Tak",
       "Nie",
       function yes() {
@@ -46,7 +46,7 @@ export const TodoItem = ({ id, task, isDone, todos, setTodos }) => {
         return;
       },
       {
-        width: "320px",
+        width: "400px",
         borderRadius: "8px",
       }
     );
@@ -55,7 +55,7 @@ export const TodoItem = ({ id, task, isDone, todos, setTodos }) => {
   return (
     <>
       <hr />
-      <p className={css.task}>{task}</p>
+      <p className={isDone ? css.taskDone : css.task}>{task}</p>
       {!isDone && <button onClick={handleMarkAsDoneClick}>Zrobione</button>}
       <button onClick={handleTaskDeleteClick}>Usuń</button>
     </>

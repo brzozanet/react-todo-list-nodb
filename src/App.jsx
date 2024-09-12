@@ -6,18 +6,17 @@ import { todosDatabase } from "./database/todos";
 function App() {
   const [todos, setTodos] = useState(todosDatabase);
   const [isFormVisible, setIsFormVisible] = useState(false);
-  const [numberOfTodos, setNumberOfTodos] = useState(todosDatabase.length);
 
   const handleIsFormVisibleClick = () => {
     setIsFormVisible((prevState) => !prevState);
   };
 
   let numberOfTodosText;
-  if (numberOfTodos === 0) {
+  if (todos.length === 0) {
     numberOfTodosText = "zadań";
-  } else if (numberOfTodos === 1) {
+  } else if (todos.length === 1) {
     numberOfTodosText = "zadanie";
-  } else if (numberOfTodos < 5) {
+  } else if (todos.length < 5) {
     numberOfTodosText = "zadania";
   } else {
     numberOfTodosText = "zadań";
@@ -27,22 +26,14 @@ function App() {
     <>
       <h1>Do zrobienia</h1>
       <h2>
-        {numberOfTodos} {numberOfTodosText}
+        {todos.length} {numberOfTodosText}
       </h2>
       {isFormVisible ? (
-        <AddTaskForm
-          todos={todos}
-          setTodos={setTodos}
-          setNumberOfTodos={setNumberOfTodos}
-        />
+        <AddTaskForm todos={todos} setTodos={setTodos} />
       ) : (
         <button onClick={handleIsFormVisibleClick}>Dodaj zadanie</button>
       )}
-      <TodoList
-        todos={todos}
-        setTodos={setTodos}
-        setNumberOfTodos={setNumberOfTodos}
-      />
+      <TodoList todos={todos} setTodos={setTodos} />
     </>
   );
 }

@@ -1,17 +1,9 @@
 import PropTypes from "prop-types";
 
-export const TodoItem = ({
-  id,
-  task,
-  isDone,
-  todos,
-  setTodos,
-  setNumberOfTodos,
-}) => {
+export const TodoItem = ({ id, task, isDone, todos, setTodos }) => {
   const handleTaskDeleteClick = () => {
     const filteredTodos = todos.filter((todo) => todo.id !== id);
     setTodos(filteredTodos);
-    setNumberOfTodos((prevState) => prevState - 1);
     alert("Zadanie zostało usunięte");
   };
 
@@ -43,5 +35,4 @@ TodoItem.propTypes = {
   isDone: PropTypes.bool.isRequired,
   todos: PropTypes.array.isRequired,
   setTodos: PropTypes.func.isRequired,
-  setNumberOfTodos: PropTypes.func.isRequired,
 };

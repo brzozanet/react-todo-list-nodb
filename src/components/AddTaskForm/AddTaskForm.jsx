@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-export const AddTaskForm = ({ todos, setTodos, setNumberOfTodos }) => {
+export const AddTaskForm = ({ todos, setTodos }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputText = (event) => {
@@ -16,6 +16,12 @@ export const AddTaskForm = ({ todos, setTodos, setNumberOfTodos }) => {
     let existingTasks = [];
     todos.forEach((todo) => existingTasks.push(todo.task));
 
+    // NOTE: another solution
+    // todos.map((todo) => todo.task);
+    // todos.find((todo) => todo.task === newTask)
+    //   ? "NIE DODAWAJ"
+    //   : "DODAJ NOWY TASK";
+
     if (existingTasks.includes(newTask)) {
       alert("Takie zadanie masz już na liście");
     } else {
@@ -23,7 +29,6 @@ export const AddTaskForm = ({ todos, setTodos, setNumberOfTodos }) => {
         { id: nanoid(), task: newTask, isDone: false },
         ...prevState,
       ]);
-      setNumberOfTodos((prevState) => prevState + 1);
       setInputValue("");
       alert("Zadanie zostało dodane do listy");
     }
@@ -49,5 +54,4 @@ export const AddTaskForm = ({ todos, setTodos, setNumberOfTodos }) => {
 AddTaskForm.propTypes = {
   todos: PropTypes.array.isRequired,
   setTodos: PropTypes.func.isRequired,
-  setNumberOfTodos: PropTypes.func.isRequired,
 };

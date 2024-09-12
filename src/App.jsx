@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AddTaskForm } from "./components/AddTaskForm/AddTaskForm";
 import { TodoList } from "./components/TodoList/TodoList";
 import { todosDatabase } from "./database/todos";
+import css from "./App.module.css";
 
 function App() {
   const [todos, setTodos] = useState(todosDatabase);
@@ -24,16 +25,18 @@ function App() {
 
   return (
     <>
-      <h1>Do zrobienia</h1>
-      <h2>
-        {todos.length} {numberOfTodosText}
-      </h2>
-      {isFormVisible ? (
-        <AddTaskForm todos={todos} setTodos={setTodos} />
-      ) : (
-        <button onClick={handleIsFormVisibleClick}>Dodaj zadanie</button>
-      )}
-      <TodoList todos={todos} setTodos={setTodos} />
+      <div className={css.container}>
+        <h1 className={css.title}>Do zrobienia</h1>
+        <h2 className={css.subtitle}>
+          {todos.length} {numberOfTodosText}
+        </h2>
+        {isFormVisible ? (
+          <AddTaskForm todos={todos} setTodos={setTodos} />
+        ) : (
+          <button onClick={handleIsFormVisibleClick}>Dodaj zadanie</button>
+        )}
+        <TodoList todos={todos} setTodos={setTodos} />
+      </div>
     </>
   );
 }

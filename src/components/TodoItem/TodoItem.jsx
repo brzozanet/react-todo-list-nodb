@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import css from "./TodoItem.module.css";
 
 export const TodoItem = ({ id, task, isDone, todos, setTodos }) => {
   const handleTaskDeleteClick = () => {
@@ -22,7 +23,7 @@ export const TodoItem = ({ id, task, isDone, todos, setTodos }) => {
   return (
     <>
       <hr />
-      <p>{task}</p>
+      <p className={css.task}>{task}</p>
       {!isDone && <button onClick={handleMarkAsDoneClick}>Zrobione</button>}
       <button onClick={handleTaskDeleteClick}>Usuń</button>
     </>

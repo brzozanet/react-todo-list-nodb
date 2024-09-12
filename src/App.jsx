@@ -30,7 +30,11 @@ function App() {
         {numberOfTodos} {numberOfTodosText}
       </h2>
       {isFormVisible ? (
-        <AddTaskForm setTodos={setTodos} setNumberOfTodos={setNumberOfTodos} />
+        <AddTaskForm
+          todos={todos}
+          setTodos={setTodos}
+          setNumberOfTodos={setNumberOfTodos}
+        />
       ) : (
         <button onClick={handleIsFormVisibleClick}>Dodaj zadanie</button>
       )}

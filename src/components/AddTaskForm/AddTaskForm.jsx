@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-export const AddTaskForm = ({ setTodos, setNumberOfTodos }) => {
+export const AddTaskForm = ({ todos, setTodos, setNumberOfTodos }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputText = (event) => {
@@ -12,12 +12,21 @@ export const AddTaskForm = ({ setTodos, setNumberOfTodos }) => {
   const handleAddTaskForm = (event) => {
     event.preventDefault();
     const newTask = inputValue;
-    setTodos((prevState) => [
-      { id: nanoid(), task: newTask, isDone: false },
-      ...prevState,
-    ]);
-    setNumberOfTodos((prevState) => prevState + 1);
-    setInputValue("");
+
+    let existingTasks = [];
+    todos.forEach((todo) => existingTasks.push(todo.task));
+
+    if (existingTasks.includes(newTask)) {
+      alert("Takie zadanie masz już na liście");
+    } else {
+      setTodos((prevState) => [
+        { id: nanoid(), task: newTask, isDone: false },
+        ...prevState,
+      ]);
+      setNumberOfTodos((prevState) => prevState + 1);
+      setInputValue("");
+      alert("Zadanie zostało dodane do listy");
+    }
   };
 
   return (
@@ -38,6 +47,7 @@ export const AddTaskForm = ({ setTodos, setNumberOfTodos }) => {
 };
 
 AddTaskForm.propTypes = {
+  todos: PropTypes.array.isRequired,
   setTodos: PropTypes.func.isRequired,
   setNumberOfTodos: PropTypes.func.isRequired,
 };

@@ -23,10 +23,6 @@ export const TodoItem = ({
     });
 
     setTodos(updatedTodos);
-    console.log("updatedTodos:");
-    console.log(updatedTodos);
-    console.log("setTodos:");
-    console.log(todos);
   };
 
   return (

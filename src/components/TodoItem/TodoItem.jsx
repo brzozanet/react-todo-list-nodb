@@ -12,6 +12,7 @@ export const TodoItem = ({
     const filteredTodos = todos.filter((todo) => todo.id !== id);
     setTodos(filteredTodos);
     setNumberOfTodos((prevState) => prevState - 1);
+    alert("Zadanie zostało usunięte");
   };
 
   const handleMarkAsDoneClick = () => {
@@ -23,6 +24,7 @@ export const TodoItem = ({
     });
 
     setTodos(updatedTodos);
+    alert("Zadanie zostało oznaczone jako zrobione");
   };
 
   return (

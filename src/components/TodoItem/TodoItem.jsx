@@ -1,18 +1,19 @@
 import Notiflix from "notiflix";
 import PropTypes from "prop-types";
+import useStore from "../../store/store";
 import css from "./TodoItem.module.css";
 
-export const TodoItem = ({ id, task, isDone, todos, setTodos }) => {
-  const handleTaskDeleteClick = () => {
-    const filteredTodos = todos.filter((todo) => todo.id !== id);
+export const TodoItem = ({ id, task, isDone }) => {
+  const { deleteTodo, editTodo, markAsDone } = useStore();
 
+  const handleTaskDeleteClick = () => {
     Notiflix.Confirm.show(
       "Konieczne potwierdzenie",
       "Czy na pewno chcesz usunąć to zadanie?",
       "Tak",
       "Nie",
       function yes() {
-        setTodos(filteredTodos);
+        deleteTodo(id);
         Notiflix.Notify.success("Zadanie zostało usunięte");
       },
       function no() {
@@ -25,21 +26,18 @@ export const TodoItem = ({ id, task, isDone, todos, setTodos }) => {
     );
   };
 
-  const handleMarkAsDoneClick = () => {
-    const updatedTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        return { ...todo, isDone: true };
-      }
-      return todo;
-    });
+  const handleEditTaskClick = () => {
+    editTodo(id, task);
+  };
 
+  const handleMarkAsDoneClick = () => {
     Notiflix.Confirm.show(
       "Konieczne potwierdzenie",
       "Czy na pewno oznaczyć to zadanie jako zrobione?",
       "Tak",
       "Nie",
       function yes() {
-        setTodos(updatedTodos);
+        markAsDone(id);
         Notiflix.Notify.success("Zadanie zostało oznaczone jako zrobione");
       },
       function no() {
@@ -57,6 +55,7 @@ export const TodoItem = ({ id, task, isDone, todos, setTodos }) => {
       <hr />
       <p className={isDone ? css.taskDone : css.task}>{task}</p>
       {!isDone && <button onClick={handleMarkAsDoneClick}>Zrobione</button>}
+      <button onClick={handleEditTaskClick}>Edytuj</button>
       <button onClick={handleTaskDeleteClick}>Usuń</button>
     </>
   );
@@ -67,5 +66,4 @@ TodoItem.propTypes = {
   task: PropTypes.string.isRequired,
   isDone: PropTypes.bool.isRequired,
   todos: PropTypes.array.isRequired,
-  setTodos: PropTypes.func.isRequired,
 };

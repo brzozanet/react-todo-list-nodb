@@ -1,36 +1,28 @@
-import { nanoid } from "nanoid";
 import { useState } from "react";
 import Notiflix from "notiflix";
 import PropTypes from "prop-types";
+import useStore from "../../store/store";
 
-export const AddTaskForm = ({ todos, setTodos }) => {
-  const [inputValue, setInputValue] = useState("");
+export const AddTaskForm = ({ todos }) => {
+  const { addTodo } = useStore();
+  const [newTask, setNewTask] = useState("");
 
   const handleInputText = (event) => {
-    setInputValue(event.target.value);
+    setNewTask(event.target.value);
   };
 
   const handleAddTaskForm = (event) => {
     event.preventDefault();
-    const newTask = inputValue;
 
-    let existingTasks = [];
-    todos.forEach((todo) => existingTasks.push(todo.task));
+    // some();
+    // every();
+    // posix (time format);
 
-    // NOTE: another solution
-    // todos.map((todo) => todo.task);
-    // todos.find((todo) => todo.task === newTask)
-    //   ? "NIE DODAWAJ"
-    //   : "DODAJ NOWY TASK";
-
-    if (existingTasks.includes(newTask)) {
+    if (todos.some(({ task }) => task === newTask)) {
       Notiflix.Notify.failure("Takie zadanie masz już na liście");
     } else {
-      setTodos((prevState) => [
-        { id: nanoid(), task: newTask, isDone: false },
-        ...prevState,
-      ]);
-      setInputValue("");
+      addTodo(newTask);
+      setNewTask("");
       Notiflix.Notify.success("Zadanie zostało dodane do listy");
     }
   };
@@ -41,10 +33,10 @@ export const AddTaskForm = ({ todos, setTodos }) => {
         <input
           type="text"
           name="task"
-          value={inputValue}
+          value={newTask}
           onChange={handleInputText}
         />
-        <button type="submit" disabled={inputValue ? false : true}>
+        <button type="submit" disabled={newTask ? false : true}>
           Dodaj
         </button>
       </form>
@@ -54,5 +46,4 @@ export const AddTaskForm = ({ todos, setTodos }) => {
 
 AddTaskForm.propTypes = {
   todos: PropTypes.array.isRequired,
-  setTodos: PropTypes.func.isRequired,
 };

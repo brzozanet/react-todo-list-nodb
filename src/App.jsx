@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { AddTaskForm } from "./components/AddTaskForm/AddTaskForm";
 import { TodoList } from "./components/TodoList/TodoList";
-import { todosDatabase } from "./database/todos";
+import useStore from "./store/store";
 import css from "./App.module.css";
 
 function App() {
-  const [todos, setTodos] = useState(todosDatabase);
   const [isFormVisible, setIsFormVisible] = useState(false);
-
+  const { todos } = useStore();
   const handleIsFormVisibleClick = () => {
     setIsFormVisible((prevState) => !prevState);
   };
@@ -31,11 +30,11 @@ function App() {
           {todos.length} {numberOfTodosText}
         </h2>
         {isFormVisible ? (
-          <AddTaskForm todos={todos} setTodos={setTodos} />
+          <AddTaskForm todos={todos} />
         ) : (
           <button onClick={handleIsFormVisibleClick}>Dodaj zadanie</button>
         )}
-        <TodoList todos={todos} setTodos={setTodos} />
+        <TodoList todos={todos} />
       </div>
     </>
   );

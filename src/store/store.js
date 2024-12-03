@@ -5,21 +5,25 @@ const todosDatabase = [
   {
     id: nanoid(),
     task: "Skończyć kurs React",
+    isEdited: false,
     isDone: false,
   },
   {
     id: nanoid(),
     task: "Dopieścić projekt Kapu$ta",
+    isEdited: false,
     isDone: false,
   },
   {
     id: nanoid(),
     task: "Zaktualizować CV",
+    isEdited: false,
     isDone: false,
   },
   {
     id: nanoid(),
     task: "Zrobić nowe portfolio website",
+    isEdited: false,
     isDone: false,
   },
 ];
@@ -47,14 +51,22 @@ const useStore = create((set) => ({
     })),
   toggleTaskEdit: (todoId) =>
     set((state) => ({
-      //NOTE: to do it
-      todos: state.todos.map(todo),
+      todos: state.todos.map((todo) =>
+        todo.id === todoId
+          ? { ...todo, isEdited: !todo.isEdited }
+          : { ...todo, isEdited: false }
+      ),
     })),
   editTodo: (todoId, editedTask) =>
     set((state) => ({
-      todos: state.tods.map((todo) =>
+      todos: state.todos.map((todo) =>
         todo.id === todoId
-          ? { ...todo, task: editedTask, updatedAt: Date.now() }
+          ? {
+              ...todo,
+              task: editedTask,
+              updatedAt: Date.now(),
+              isEdited: false,
+            }
           : todo
       ),
     })),

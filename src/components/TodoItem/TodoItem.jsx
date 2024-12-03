@@ -2,9 +2,11 @@ import Notiflix from "notiflix";
 import PropTypes from "prop-types";
 import useStore from "../../store/store";
 import css from "./TodoItem.module.css";
+import { useState } from "react";
 
-export const TodoItem = ({ id, task, isDone }) => {
-  const { deleteTodo, editTodo, markAsDone } = useStore();
+export const TodoItem = ({ id, task, isDone, isEdited }) => {
+  const [newTask, setNewTask] = useState(task);
+  const { deleteTodo, markAsDone, toggleTaskEdit, editTodo } = useStore();
 
   const handleTaskDeleteClick = () => {
     Notiflix.Confirm.show(
@@ -24,10 +26,6 @@ export const TodoItem = ({ id, task, isDone }) => {
         borderRadius: "8px",
       }
     );
-  };
-
-  const handleEditTaskClick = () => {
-    editTodo(id, task);
   };
 
   const handleMarkAsDoneClick = () => {
@@ -53,10 +51,24 @@ export const TodoItem = ({ id, task, isDone }) => {
   return (
     <>
       <hr />
-      <p className={isDone ? css.taskDone : css.task}>{task}</p>
-      {!isDone && <button onClick={handleMarkAsDoneClick}>Zrobione</button>}
-      <button onClick={handleEditTaskClick}>Edytuj</button>
-      <button onClick={handleTaskDeleteClick}>Usuń</button>
+      {isEdited ? (
+        <>
+          <input
+            type="text"
+            value={newTask}
+            onChange={(event) => setNewTask(event.target.value)}
+          />
+          <button onClick={() => editTodo(id, newTask)}>Potwiedź</button>
+          <button onClick={() => toggleTaskEdit(id)}>Anuluj</button>
+        </>
+      ) : (
+        <>
+          <p className={isDone ? css.taskDone : css.task}>{task}</p>
+          {!isDone && <button onClick={handleMarkAsDoneClick}>Zrobione</button>}
+          <button onClick={() => toggleTaskEdit(id)}>Edytuj</button>
+          <button onClick={handleTaskDeleteClick}>Usuń</button>
+        </>
+      )}
     </>
   );
 };
@@ -65,5 +77,6 @@ TodoItem.propTypes = {
   id: PropTypes.string.isRequired,
   task: PropTypes.string.isRequired,
   isDone: PropTypes.bool.isRequired,
+  isEdited: PropTypes.bool.isRequired,
   todos: PropTypes.array.isRequired,
 };

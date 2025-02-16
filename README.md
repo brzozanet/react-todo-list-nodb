@@ -6,7 +6,7 @@ _If the design and content these two links are identical, the project is done ðŸ
 
 [Final project](https://zrozumiec-react-todo-app.netlify.app/)
 
-[Website url](https://brzozanet.github.io/react-todo-list/)
+[Website url](https://brzozanet.github.io/react-todo-list-nodb/)
 
 _CLI commands_
 

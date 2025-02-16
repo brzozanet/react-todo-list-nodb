@@ -1,6 +1,6 @@
 {
-  "name": "react-todo-list",
-  "homepage": "https://brzozanet.github.io/react-todo-list/",
+  "name": "react-todo-list-nodb",
+  "homepage": "https://brzozanet.github.io/react-todo-list-nodb/",
   "private": true,
   "version": "0.0.0",
   "type": "module",

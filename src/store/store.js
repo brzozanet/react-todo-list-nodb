@@ -31,6 +31,7 @@ const todosDatabase = [
 const useStore = create((set) => ({
   todos: todosDatabase,
   appTitle: "Do zrobienia",
+
   addTodo: (newTask) =>
     set((state) => ({
       todos: [
@@ -45,10 +46,12 @@ const useStore = create((set) => ({
         ...state.todos,
       ],
     })),
+
   deleteTodo: (todoId) =>
     set((state) => ({
       todos: state.todos.filter((todo) => todo.id !== todoId),
     })),
+
   toggleTaskEdit: (todoId) =>
     set((state) => ({
       todos: state.todos.map((todo) =>
@@ -57,6 +60,7 @@ const useStore = create((set) => ({
           : { ...todo, isEdited: false }
       ),
     })),
+
   editTodo: (todoId, editedTask) =>
     set((state) => ({
       todos: state.todos.map((todo) =>
@@ -70,6 +74,7 @@ const useStore = create((set) => ({
           : todo
       ),
     })),
+
   markAsDone: (todoId) =>
     set((state) => ({
       todos: state.todos.map((todo) =>

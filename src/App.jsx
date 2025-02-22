@@ -7,6 +7,7 @@ import css from "./App.module.css";
 function App() {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const { todos } = useStore();
+
   const handleIsFormVisibleClick = () => {
     setIsFormVisible((prevState) => !prevState);
   };
